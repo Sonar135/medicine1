@@ -1,0 +1,161 @@
+.auth{
+    height:550px;
+    margin-top:50px;
+}
+
+.auth .cent{
+    height:100%;
+    display:flex;
+    box-shadow: var(--shadow);
+    animation: fade_in .8s;
+}
+
+
+
+.left, .right{
+    width:600px;
+    height:100%;
+    position:relative;
+}
+
+.right{
+    padding:16px;
+}
+
+#sup_phone{
+    display:block;
+    margin:0 auto;
+    width: 500px;
+}
+
+
+.left{
+    background: url("../images/cute-doctor-injecting-patient-cartoon-vector-icon-illustration-people-healthcare-icon-isolated-flat_138676-6669 (1).avif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;
+}
+
+#super{
+    background: url("../images/DTPGrants.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;
+}
+
+
+#coor{
+    background: url("../images/istockphoto-1184196223-612x612.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;
+}
+
+
+.phase2{
+    display:none;
+}
+
+.phase2, .phase1{
+    animation:fade_in .8s;
+}
+
+
+
+.right h1{
+    width:100%;
+    text-align: center;
+}
+
+
+.n_e{
+    width:100%;
+    height: 55px;
+    margin:25px 0;
+    display:flex;
+}
+
+.n_e input{
+    width: 250px;
+    height:50px;
+    margin: 0 25px;
+    border-bottom: 1px solid var(--accent);
+    padding:16px 0;
+}
+
+button{
+    padding:16px 30px;
+    display:block;
+    margin:0 auto;
+}
+
+.auth .signup{
+    display:none;
+}
+
+
+.ne_log{
+    width:100%;
+    height:50px;
+    margin:80px 0;
+}
+
+.ne_log input{
+    width:400px;
+    margin:0 auto;
+    display:block;
+    height:50px;
+    border-bottom: 1px solid var(--accent);
+    padding:16px 0;
+}
+
+.right h4{
+    width:100%;
+    font-weight:600;
+    text-align: center;
+    margin:20px 0;
+    color:var(--accent);
+    cursor:pointer;
+}
+
+
+textarea{
+    width:530px;
+    margin: 10px 25px;
+    border-bottom:1px solid var(--accent);
+    height:100px;
+    resize:none;
+}
+
+
+ textarea::placeholder{
+    color:black;
+    font-size:18px;
+}
+
+
+.nav_buttons{
+    width:300px;
+    height:60px;
+    margin:15px auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav_buttons button{
+    padding:0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    margin:0 40px;
+}
+
+
+.nav_buttons i{
+    font-size: 30px;
+    color:white;
+}

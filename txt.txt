@@ -1,0 +1,41 @@
+create table appointments(
+	id int AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255),
+    patient_id varchar(255),
+    email varchar(255),
+    date varchar(255),
+    time varchar(255),
+    reason varchar(255),
+    status varchar(255),
+    consulting_doc varchar(255)
+)
+
+
+
+
+
+
+|| $("#email").val() === "" || $("#phone").val() === "" || $("#nation").val() === ""
+
+
+
+
+
+
+
+
+
+
+
+
+DELIMITER //
+
+CREATE TRIGGER trg_generate_patient_id BEFORE INSERT ON patients
+FOR EACH ROW
+BEGIN
+    DECLARE max_id INT;
+    
+    SELECT IFNULL(MAX(id), 0) INTO max_id FROM patients;
+    
+    SET NEW.patient_id = CONCAT(NEW.prefix, RIGHT(CONCAT('00', max_id + 1), 2));
+END;
