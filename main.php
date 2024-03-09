@@ -31,7 +31,7 @@
           '$name', '$patientID', '$email', '$date', '$time', '$desc' , '$status' )");
 
           if($insert){
-            header("location: main.php?success#lock");
+            header("location: appointments.php?success#lock");
           }
         }
     }
@@ -179,11 +179,11 @@
                                     <li id="list">10am-11am</li>
                                      
                                      
-                                       <li id="list">11am=12am </li>
+                                       <li id="list">11am-12am </li>
                                       
                                      
                                        <li id="list">12am-1pm</li>
-                                       <li id="list">1px-2pm</li>
+                                       <li id="list">1pm-2pm</li>
                                        <li id="list">2pm-3pm</li>
                                     
                                 </ul>

@@ -4,7 +4,25 @@
 
 
 
+<?php
+    $get=mysqli_query($conn, "SELECT * from patients where patient_id='$patientID'");
 
+    $row=mysqli_fetch_assoc($get);
+
+    $name=$row["name"];
+    $gender=$row["gender"];
+    $dob=$row["date_birth"];
+    $email=$row["email"];
+    $med=$row["medical_history"];
+
+    $dobObject = new DateTime($dob);
+    $now = new DateTime();
+    $age = $now->diff($dobObject)->y;
+
+
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -30,31 +48,37 @@
     <div class="container sec2">
         <div class="cent">
         <div class="acct_box">
-                    <div class="profile_i">
-                        <div class="i_cont">
-                        <i class="fa-solid fa-user"></i>
-                        </div>
-                    </div>
+                <div class="patient_img">
 
-                    <div class="ne">
-                        <h3>Name:</h3>
-                        <h3>Efidi Victor</h3>
-                    </div>
+                </div>
 
-                    <div class="ne">
-                        <h3>Email:</h3>
-                        <h3>vefidi135@gmail.com</h3>
-                    </div>
+                <h1>PROFILE</h1>
 
-                    <div class="ne">
-                        <h3>Address:</h3>
-                        <h3></h3>
-                    </div>
+                <div class="ne">
+                    <h3>Name:</h3>
+                    <h3><?php echo $name?></h3>
+                </div>
 
-                    <div class="ne">
-                        <h3>Phone:</h3>
-                        <h3>08109495127</h3>
-                    </div>
+                <div class="ne">
+                    <h3>Gender:</h3>
+                    <h3><?php echo $gender?></h3>
+                </div>
+
+                <div class="ne">
+                    <h3>Age:</h3>
+                    <h3><?php echo $age?></h3>
+                </div>
+
+                <div class="ne">
+                    <h3>Patient ID:</h3>
+                    <h3><?php echo $patientID?></h3>
+                </div>
+
+                <h1>MEDICAL HISTORY:</h1>
+
+                <div class="history_box">
+                <?php echo $med?>
+                </div>
                 </div>
         </div>
     </div>
@@ -69,9 +93,9 @@
                     <i class="fa-solid fa-suitcase-medical"></i>
                     </div>
                     <h1>19/09/2023</h1>
-                    <h1>Test For: Malaria</h1> 
+                    <h1> Blood Test</h1> 
                     <h1>Dr:  Anyakoya</h1>
-                    <button>View Result</button>
+                   <a href="result.php"> <button>View Diagnosis</button></a>
                   
                 </div>
 
