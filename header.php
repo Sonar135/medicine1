@@ -1,4 +1,20 @@
+<?php
 
+  ob_start();
+  session_start();
+  include 'connect.php';
+  if(isset($_SESSION["id"])){
+    $email=$_SESSION['email'];
+    $user_type=$_SESSION['user_type'];
+    $user_name=$_SESSION['name'];
+ 
+
+     if($user_type=="patient"){
+      $patientID=$_SESSION['patient_id'];
+     }
+  
+  }
+?>
 
 
 

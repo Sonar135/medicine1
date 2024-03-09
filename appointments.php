@@ -3,7 +3,15 @@
 ?>
 
 
+<?php
+   if(isset($_GET["success"])){
+    echo '  <div class="message" id="message">
+   appointment made. Pending confirmation
+</div>';
+}
 
+
+?>
 
 
 

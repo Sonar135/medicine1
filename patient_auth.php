@@ -75,15 +75,18 @@
         $phone=$_POST['phone'];
         $password=$_POST['password'];
         $confirm=$_POST['conpass'];
+        $nationality=$_POST['nationality'];
+        $dob=$_POST['dob'];
+        $gender=$_POST['gender'];
+        $records=  htmlentities( $_POST['medical_records']) ;
         $prefix="pat";
 
 
-     
         
 
     
 
-        if(emptysignup($email, $fname, $phone, $password, $confirm )!== false){
+        if(emptysignup($email, $fname, $phone, $password, $confirm, $prefix)!== false){
             
             
             header("location: patient_auth.php?error=emptyfield");
@@ -117,10 +120,11 @@
             exit();
         }
 
+        create_patient($conn, $email, $fname,  $phone, $password, $confirm, $nationality, $dob, $gender, $records, $prefix );
 
      
 
-        create_patient($conn, $email, $fname,  $phone, $password, $confirm );
+        
     
         
     }

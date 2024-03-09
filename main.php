@@ -2,8 +2,40 @@
     include "header.php";
 ?>
 
+<?php
+    if(isset($_GET["fill"])){
+        echo '  <div class="message" id="message">
+    please fill all fields
+    </div>';
+    }
+
+    if(isset($_POST["submit"])){
+        $name=$_POST["name"];
+        $email=$_POST["email"];
+        $time=$_POST["time"];
+        $date=$_POST["date"];
+        $desc=htmlentities($_POST["desc"]);
+        $status="pending";
 
 
+        if($name=="" or $email=="" or $time=="" or $date==""){
+       
+
+        header("location: main.php?fill#lock");
+        }
+
+
+        else{
+            $insert=mysqli_query($conn, "INSERT into appointments (name, patient_id, email, date, time, reason, status) values(
+
+          '$name', '$patientID', '$email', '$date', '$time', '$desc' , '$status' )");
+
+          if($insert){
+            header("location: main.php?success#lock");
+          }
+        }
+    }
+?>
 
 
 <!DOCTYPE html>
@@ -130,8 +162,8 @@
                     <h1>BOOK AN APPOINTMENT</h1>
 
                     <div class="n_e">
-                        <input type="text" placeholder="name" name="name">
-                        <input type="email" placeholder="email" name="price">
+                        <input type="text" placeholder="name" name="name" value="<?php echo $user_name?>">
+                        <input type="email" placeholder="email" name="email" value="<?php echo $email?>">
                     </div>
 
                     <div class="n_e">
@@ -157,17 +189,15 @@
                                 </ul>
                             </div>
                         </div>
-                        <input type="text" placeholder="" name="category"  id="myInput" hidden >
+                        <input type="text" placeholder="" name="time"  id="myInput" hidden >
 
                        
-                        <input type="date"  name="image"  id="image">
+                        <input type="date"  name="date"  id="image">
                     </div>
 
                   
 
-                    <div class="n_e">
-                        <input type="number" placeholder="quantity" name="quantity">
-                    </div>
+               
 
                
                         <textarea name="desc" id="" cols="30" rows="10" placeholder="reason for appointment (optional)"></textarea>
@@ -177,7 +207,7 @@
                 </div></form>  
             </div>
 
-
+  
 
   
         </div>

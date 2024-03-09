@@ -3,11 +3,12 @@
 
 
     
-    function create_patient($conn, $email, $fname, $phone, $password, $confirm){
+    function create_patient($conn, $email, $fname, $phone, $password, $confirm, $nationality, $dob, $gender, $records, $prefix){
 
         $user_type="patient";
   
-        $insert= "INSERT INTO patients (name,  phone,  email,  password, user_type) VALUES (?,?,?,?,?)";   
+        $insert= "INSERT INTO patients (name,  phone,  email,  password, user_type, prefix, medical_history, nationality, gender, date_birth) VALUES 
+        (?,?,?,?,?,?,?,?,?,?)";   
         
       
 
@@ -22,7 +23,7 @@
         
         $hashed_pwd=password_hash($password, PASSWORD_DEFAULT);
 
-        mysqli_stmt_bind_param($stmt2, 'sssss', $fname, $phone,  $email, $hashed_pwd, $user_type);
+        mysqli_stmt_bind_param($stmt2, 'ssssssssss', $fname, $phone,  $email, $hashed_pwd, $user_type, $prefix, $records, $nationality, $gender, $dob );
         mysqli_stmt_execute($stmt2);
         mysqli_stmt_close($stmt2);
         
@@ -184,7 +185,8 @@
             $_SESSION["name"]=$uidexist["name"];
             $_SESSION['phone']=$uidexist['phone'];
             $_SESSION['user_type']=$uidexist['user_type'];
-            $_SESSION["name"]=$uidexist["name"];
+            $_SESSION['patient_id']=$uidexist['patient_id'];
+ 
           
      
    
