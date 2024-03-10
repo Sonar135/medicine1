@@ -82,6 +82,17 @@
                               </li>
                                     ';
                                    }
+
+                                   else if($user_type=="doctor"){
+                                    echo '   <li>
+                                    <a href="doctor_appointments.php">Appointments</a>
+                                  </li>
+                                  
+                                  <li>
+                                  <a href="patients.php">Patients</a>
+                                </li>
+                                  ';
+                                   }
                                    echo '
                                    <li>
                       

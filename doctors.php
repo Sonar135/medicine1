@@ -66,8 +66,10 @@
                 <button>See Profile</button>
             </div>
 
-            <div class="doctor_card">
-                
+            <div class="doctor_card" id="add">
+             <a href="add_doc.php"><div class="add_button">
+                <i class="fa-solid fa-plus"></i>
+                </div></a>   
                 </div>
 
                 <div class="doctor_card">

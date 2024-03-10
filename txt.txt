@@ -39,3 +39,10 @@ BEGIN
     
     SET NEW.patient_id = CONCAT(NEW.prefix, RIGHT(CONCAT('00', max_id + 1), 2));
 END;
+
+
+
+
+
+
+<td><h3>'.$doctor.'</h3></td>

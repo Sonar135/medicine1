@@ -58,3 +58,30 @@
     
 }
 
+
+#add{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.add_button{
+    width:60px;
+    height:60px;
+    background: var(--accent);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.add_button i{
+    color:white;
+    font-size:30px;
+}
+
+.add_button:hover{
+    background: var(--accent_hover);
+    box-shadow: var(--shadow);
+}

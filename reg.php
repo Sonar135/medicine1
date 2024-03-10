@@ -37,7 +37,7 @@
 
     <div class="container reg">
             <div class="cent">
-                <a href="planner_auth.php"><div class="reg_box">
+                <a href="doctor_auth.php"><div class="reg_box">
                     <div class="prof_i">
                     <i class="fa-solid fa-user"></i>                   
                     </div>

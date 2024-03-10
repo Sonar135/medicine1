@@ -71,3 +71,30 @@ th h3{
   td button{
     margin:0 auto;
   }
+
+
+td a{
+  width:80px;
+  display: inline-block;
+  margin:0 80px;
+}
+
+
+
+  .tb_ico{
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    background: var(--accent);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+    margin:20px 41%;
+
+  }
+
+  .tb_ico i{
+    font-size:18px;
+    color:white;
+  }

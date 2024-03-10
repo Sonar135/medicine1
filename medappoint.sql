@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2024 at 04:45 PM
+-- Generation Time: Mar 10, 2024 at 07:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -98,8 +98,33 @@ CREATE TABLE `doctors` (
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `nationality` varchar(255) DEFAULT NULL,
-  `doctor_id` varchar(255) DEFAULT NULL
+  `doctor_id` varchar(255) DEFAULT NULL,
+  `user_type` varchar(500) NOT NULL,
+  `date_birth` date NOT NULL,
+  `phone` varchar(500) NOT NULL,
+  `prefix` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`id`, `name`, `gender`, `email`, `password`, `nationality`, `doctor_id`, `user_type`, `date_birth`, `phone`, `prefix`) VALUES
+(1, 'jerry', 'male', 'vefidi135@gmail.com', '$2y$10$G9f/RUxgKipn33Z8rTQe/OEPs55mFuvhSy9pr49IJUB9xM/HW/1z.', 'Nigerian', 'doc01', 'doctor', '2003-02-10', 'vefidi135@gmail.com', 'doc');
+
+--
+-- Triggers `doctors`
+--
+DELIMITER $$
+CREATE TRIGGER `trg_generate_doc_id` BEFORE INSERT ON `doctors` FOR EACH ROW BEGIN
+    DECLARE max_id INT;
+    
+    SELECT IFNULL(MAX(id), 0) INTO max_id FROM doctors;
+    
+    SET NEW.doctor_id = CONCAT(NEW.prefix, RIGHT(CONCAT('00', max_id + 1), 2));
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -203,7 +228,7 @@ ALTER TABLE `diagnosis`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `patients`

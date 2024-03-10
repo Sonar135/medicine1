@@ -309,7 +309,7 @@
             $_SESSION["email"]=$uidexist["email"];
             $_SESSION['phone']=$uidexist['phone'];
             $_SESSION['user_type']=$uidexist['user_type'];
-          
+            $_SESSION["name"]=$uidexist["name"];
      
    
          
@@ -343,15 +343,15 @@
 
 
 
-    function planner_email_exists($conn, $email){
+    function doc_email_exists($conn, $email){
         $result;
     
-        $query="SELECT * FROM planners WHERE email=?";
+        $query="SELECT * FROM doctors WHERE email=?";
     
         $stmt=mysqli_stmt_init($conn);
 
         if(!mysqli_stmt_prepare($stmt, $query)){
-            header("location: planner_auth.php?error=stmtfailed");
+            header("location: add_doc.php?error=stmtfailed");
             exit();
         }
     
@@ -373,31 +373,33 @@
     }
 
 
-    function create_planner($conn, $email, $fname,  $phone, $password, $confirm ){
-        $user_type="planner";
+    function create_doctor($conn, $email, $fname, $phone, $password, $confirm, $nationality, $dob, $gender, $prefix ){
+        $user_type="doctor";
   
-        $insert= "INSERT INTO planners (name,  phone, email,   password, user_type) VALUES (?,?,?,?,?)";
+        $insert= "INSERT INTO doctors (name,  phone,  email,  password, user_type, prefix,  nationality, gender, date_birth) VALUES 
+        (?,?,?,?,?,?,?,?,?)";   
+        
 
         $stmt2=mysqli_stmt_init($conn);
 
         if(!mysqli_stmt_prepare($stmt2, $insert)){
-            header("location: planner_auth.php?error=stmtfailed");
+            header("location: add_doc.php?error=stmtfailed");
             exit();
         }
     
         
         $hashed_pwd=password_hash($password, PASSWORD_DEFAULT);
 
-        mysqli_stmt_bind_param($stmt2, 'sssss', $fname, $phone,  $email, $hashed_pwd, $user_type);
+        mysqli_stmt_bind_param($stmt2, 'sssssssss', $fname, $phone,  $email, $hashed_pwd, $user_type, $prefix, $nationality, $gender, $dob );
         mysqli_stmt_execute($stmt2);
         mysqli_stmt_close($stmt2);
         
-        header("location: planner_auth.php?error=success");
+        header("location: add_doc.php?error=success");
         exit();
     }
 
 
-    function empty_coor_signup($email, $fname, $phone, $password, $confirm ){
+    function empty_doc_signup($email, $fname, $phone, $password, $confirm ){
         $result;
         if($email=="" or $fname=="" or  $phone=="" or $password=="" or $confirm=="" ){
             $result= true;
@@ -411,11 +413,11 @@
 
 
 
-    function planner_login($conn, $email, $password){
-        $uidexist= planner_email_exists($conn, $email);
+    function doc_login($conn, $email, $password){
+        $uidexist= doc_email_exists($conn, $email);
 
         if($uidexist===false){
-            header("location: planner_auth.php?error=wrongLogin");
+            header("location: add_doc.php?error=wrongLogin");
             exit();
         }
 
@@ -423,7 +425,7 @@
         $checkedpwd=password_verify($password, $pwdHashed);
 
         if($checkedpwd===false){
-            header("location: planner_auth.php?error=wrongLogin");
+            header("location: add_doc.php?error=wrongLogin");
             exit();
         }
 
@@ -440,7 +442,7 @@
    
          
 
-            header("location: main.php");
+            header("location: doctor_appointments.php");
             exit();
         }
     }
