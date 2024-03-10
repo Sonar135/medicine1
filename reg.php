@@ -53,6 +53,15 @@
                     <h1>Patient</h1>
                 </div></a>
 
+                <a href="Admin_auth.php"><div class="reg_box">
+                    <div class="prof_i">
+                    <i class="fa-solid fa-user-tie"></i>              
+                    </div>
+
+                    <h1>Admin</h1>
+                </div></a>
+
+
                 
 
              

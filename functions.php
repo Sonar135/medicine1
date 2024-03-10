@@ -213,20 +213,20 @@
 
 
 
-    // creating the planner...............................................................................................................//////////////////////////
+    // creating the admin...............................................................................................................//////////////////////////
 
 
 
 
-    function sup_email_exists($conn, $email){
+    function admin_email_exists($conn, $email){
         $result;
     
-        $query="SELECT * FROM supervisors WHERE email=?";
+        $query="SELECT * FROM admins WHERE email=?";
     
         $stmt=mysqli_stmt_init($conn);
 
         if(!mysqli_stmt_prepare($stmt, $query)){
-            header("location: patient_auth.php?error=stmtfailed");
+            header("location: admin_auth.php?error=stmtfailed");
             exit();
         }
     
@@ -248,31 +248,31 @@
     }
 
 
-    function create_super($conn, $email, $fname,  $phone, $password, $confirm , $prefix){
-        $user_type="supervisor";
+    function create_admin($conn, $email, $fname,  $phone, $password, $confirm){
+        $user_type="admin";
   
-        $insert= "INSERT INTO supervisors (name,  phone, email, prefix,  password, user_type) VALUES (?,?,?,?,?,?)";
+        $insert= "INSERT INTO admins (name,  phone, email,  password, user_type) VALUES (?,?,?,?,?)";
 
         $stmt2=mysqli_stmt_init($conn);
 
         if(!mysqli_stmt_prepare($stmt2, $insert)){
-            header("location: patient_auth.php?error=stmtfailed");
+            header("location: admin_auth.php?error=stmtfailed");
             exit();
         }
     
         
         $hashed_pwd=password_hash($password, PASSWORD_DEFAULT);
 
-        mysqli_stmt_bind_param($stmt2, 'ssssss', $fname, $phone,  $email, $prefix, $hashed_pwd, $user_type);
+        mysqli_stmt_bind_param($stmt2, 'sssss', $fname, $phone,  $email, $hashed_pwd, $user_type);
         mysqli_stmt_execute($stmt2);
         mysqli_stmt_close($stmt2);
         
-        header("location: patient_auth.php?error=success");
+        header("location: admin_auth.php?error=success");
         exit();
     }
 
 
-    function empty_sup_signup($email, $fname, $phone, $password, $confirm ){
+    function empty_ad_signup($email, $fname, $phone, $password, $confirm ){
         $result;
         if($email=="" or $fname=="" or  $phone=="" or $password=="" or $confirm=="" ){
             $result= true;
@@ -286,11 +286,11 @@
 
 
 
-    function sup_login($conn, $email, $password){
-        $uidexist= sup_email_exists($conn, $email);
+    function admin_login($conn, $email, $password){
+        $uidexist= admin_email_exists($conn, $email);
 
         if($uidexist===false){
-            header("location: patient_auth.php?error=wrongLogin");
+            header("location: admin_auth.php?error=wrongLogin");
             exit();
         }
 
@@ -298,7 +298,7 @@
         $checkedpwd=password_verify($password, $pwdHashed);
 
         if($checkedpwd===false){
-            header("location: patient_auth.php?error=wrongLogin");
+            header("location: admin_auth.php?error=wrongLogin");
             exit();
         }
 
@@ -306,7 +306,6 @@
             session_start();
 
             $_SESSION["id"]=$uidexist["id"];
-            $_SESSION['siwesid']=$uidexist['siwesid'];
             $_SESSION["email"]=$uidexist["email"];
             $_SESSION['phone']=$uidexist['phone'];
             $_SESSION['user_type']=$uidexist['user_type'];
@@ -315,7 +314,7 @@
    
          
 
-            header("location: main.php");
+            header("location: doctors.php");
             exit();
         }
     }

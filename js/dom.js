@@ -77,9 +77,9 @@ $("#nav_btn").click((e) => {
 
 $("#sign_up_btn").prop("disabled", true); // Initially disable the sign-up button
 
-$("input[type='text'], textarea, input[type='date']").on("input", function() { // Check all text input fields, textarea, and date input for changes
+$("input[type='text'], textarea, input[type='date'], input[type='email'], input[type='password']").on("input", function() { // Check all text input fields, textarea, and date input for changes
     var allFilled = true;
-    $("input[type='text'], textarea, input[type='date']").each(function() {
+    $("input[type='text'], textarea, input[type='date'], input[type='email'], input[type='password']").each(function() {
         if ($(this).val().trim() === "") { // Use trim() to remove whitespace
             allFilled = false;
             return false; // Exit the loop early if any input field, textarea, or date input is empty

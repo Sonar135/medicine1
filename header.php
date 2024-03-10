@@ -34,9 +34,7 @@
   <img src="images\8-removebg-preview.png" alt="">
 </div>
     <div class="nav">
-      <div class="upper">
-        
-      </div>
+  
         <div class="nav_cont">
             <div class="logo_cont">
           <a href="main.php"> <h1>MedAppoint</h1></a>  
@@ -45,29 +43,93 @@
             <div class="menu">
                 <ul>
 
-                <li>
-                    <a href="main.php">  home</a>
-                  </li>
+             
 
+
+                  <?php
+
+                            if(isset($_SESSION["id"])){
+
+                              if($user_type=="patient"){
+                                echo '   <li>
+                                <a href="main.php">  home</a>
+                              </li>
+                              
+                              <li>
+                              <a href="appointments.php">Appointments</a>
+                            </li>
+                                    
+                            <li>
+                            <a href="records.php">Diagnosis/records</a>
+                          </li>
+          
+                     
+                            ';
+                                   }
+
+                                   else if($user_type=="admin"){
+                                    echo '
+                                    <li>
+                                    <a href="doctors.php">Doctors</a>
+                                  </li>
+
+                                  <li>
+                                  <a href="patients.php">Patients</a>
+                                </li>
+
+                                <li>
+                                <a href="all_appointments.php">Appointments</a>
+                              </li>
+                                    ';
+                                   }
+                                   echo '
+                                   <li>
+                      
+                            
+                             
+                               
+       
+                               
+                                   <a href="logout.php">Logout</a>
+                           
+                            
+                           </li>
+                                   ';
+                            }
+
+                     
+
+                            else{
+                              echo '      <li>
+               
+                     
+                      
+                        
+
+                        
+                              <a href="reg.php">Register/Login</a>
+                      
+                       
+                      </li>';
+                            }
+                
+                      
+                      
+                  ?>
           
                   
                   
                     
                       
 
-                      <li>
-                        <a href="appointments.php">Appointments</a>
-                      </li>
+                     
                     
 
 
                       
 
 
-                      <li>
-                      <a href="records.php">Diagnosis/records</a>
-                    </li>
-
+                     
 
                
                       
@@ -76,17 +138,7 @@
 
    
                   
-                    <li>
-               
-                     
-                      
-                        
-
-                        
-                            <a href="reg.php">Register/Login</a>
-                    
-                     
-                    </li>
+              
                 </ul>
             </div>
         </div>

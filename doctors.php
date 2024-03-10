@@ -5,10 +5,12 @@
 
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/result.css?v=<?php echo time();?>">
+    <link rel="stylesheet" href="css/doctors.css?v=<?php echo time();?>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -19,11 +21,12 @@
             <div class="container">
                 <div class="cent">
                 <div class="welcome_cont">
-                <h1>Diagnosis</h1>
+                <h1>Doctors</h1>
                 <span></span>
                
              </div>
 
+             <h4>Crafting unforgettable events, stress-free planning.</h4>
                 </div>
             </div>
         </div>
@@ -33,33 +36,47 @@
 
     <div class="container sec1">
         <div class="cent">
-            <div class="diag_box">
-                <div class="image_box">
-                    <div class="img_circle">
+            <div class="doctor_card">
+                <div class="doctor_photo">
 
-                    </div>
-                </div>
-
-                <h1>Diagnosis</h1>
-
-                <div class="ne">
-                    <h3>Test/Scan</h3>
-                    <h3>Brain Scan</h3>
                 </div>
 
                 <div class="ne">
-                    <h3>Chief Complaint:</h3>
-                    <h3>Persistent Headaches</h3>
+                    <h3>id:</h3>
+
+                    <h3>doc01</h3>
+
                 </div>
 
                 <div class="ne">
-                    <h3>Medication:</h3>
-                    <h3>Amitryptiline, Sumatriptan</h3>
+                    <h3>name:</h3>
+
+                    <h3>Efidi Victor</h3>
+
+
                 </div>
 
+                <div class="ne">
+                    <h3>age:</h3>
 
-                <button>download result</button>
+                    <h3>37</h3>
+
+                </div>
+
+                <button>See Profile</button>
             </div>
+
+            <div class="doctor_card">
+                
+                </div>
+
+                <div class="doctor_card">
+                
+                </div>
+
+                <div class="doctor_card">
+                
+                </div>
         </div>
     </div>
 
