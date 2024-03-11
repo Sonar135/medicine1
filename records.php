@@ -20,10 +20,22 @@
     $age = $now->diff($dobObject)->y;
 
 
-
-
 ?>
 
+
+<?php
+    $diagnosis='';
+    $get_diag=mysqli_query($conn, "SELECT * from diagnosis where patient='$patientID' ");
+
+    if(mysqli_num_rows($get_diag)<1){
+        $diagnosis="<h1>No diagnosis here</h1>";
+    }
+
+    while($diag_row=mysqli_fetch_assoc($get_diag)){
+        $test=$diag_row["test_done"];
+        $complaint=
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">

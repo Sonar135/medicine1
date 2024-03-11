@@ -2,7 +2,61 @@
     include "header.php";
 ?>
 
+<?php
+$doctors="";
 
+    $get=mysqli_query($conn, "SELECT * from doctors");
+
+    if(mysqli_num_rows($get)<1){
+        $patients='<h1>no doctors registered</h1>';
+    }
+
+   while($row=mysqli_fetch_assoc($get)){
+
+    $name=$row["name"];
+    $dob=$row["date_birth"];
+    $gender=$row["gender"];
+    $nationality=$row["nationality"];
+    $dobObject = new DateTime($dob);
+    $now = new DateTime();
+    $age = $now->diff($dobObject)->y;
+    $doc_id=$row["doctor_id"];
+
+
+    $doctors.='
+    
+    <div class="doctor_card">
+    <div class="doctor_photo">
+
+    </div>
+
+    <div class="ne">
+        <h3>id:</h3>
+
+        <h3>'.$doc_id.'</h3>
+
+    </div>
+
+    <div class="ne">
+        <h3>name:</h3>
+
+        <h3 id="name">'.$name.'</h3>
+
+
+    </div>
+
+    <div class="ne">
+        <h3>age:</h3>
+
+        <h3>'.$age.'</h3>
+
+    </div>
+
+  <a href="doc_account.php?doc='.$doc_id.'"> <button>See Profile</button></a> 
+</div>
+    ';
+   }
+?>
 
 
 
@@ -36,35 +90,9 @@
 
     <div class="container sec1">
         <div class="cent">
-            <div class="doctor_card">
-                <div class="doctor_photo">
-
-                </div>
-
-                <div class="ne">
-                    <h3>id:</h3>
-
-                    <h3>doc01</h3>
-
-                </div>
-
-                <div class="ne">
-                    <h3>name:</h3>
-
-                    <h3>Efidi Victor</h3>
-
-
-                </div>
-
-                <div class="ne">
-                    <h3>age:</h3>
-
-                    <h3>37</h3>
-
-                </div>
-
-                <button>See Profile</button>
-            </div>
+        <?php
+            echo $doctors;
+        ?>
 
             <div class="doctor_card" id="add">
              <a href="add_doc.php"><div class="add_button">
@@ -72,13 +100,7 @@
                 </div></a>   
                 </div>
 
-                <div class="doctor_card">
-                
-                </div>
-
-                <div class="doctor_card">
-                
-                </div>
+          
         </div>
     </div>
 

@@ -437,6 +437,7 @@
             $_SESSION['phone']=$uidexist['phone'];
             $_SESSION['user_type']=$uidexist['user_type'];
             $_SESSION["name"]=$uidexist["name"];
+            $_SESSION["doctor_id"]=$uidexist["doctor_id"];
           
      
    

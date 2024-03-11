@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2024 at 07:59 PM
+-- Generation Time: Mar 12, 2024 at 12:28 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -66,7 +66,7 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`id`, `name`, `patient_id`, `email`, `date`, `time`, `reason`, `status`, `consulting_doc`) VALUES
-(1, 'Victor Efidi okechukwu', 'pat01', 'vefidi135@gmail.com', '2024-03-14', '11am-12am ', 'ailment', 'pending', NULL);
+(1, 'Victor Efidi okechukwu', 'pat01', 'vefidi135@gmail.com', '2024-03-14', '11am-12am ', 'ailment', 'approved', 'doc01');
 
 -- --------------------------------------------------------
 
@@ -82,8 +82,15 @@ CREATE TABLE `diagnosis` (
   `medications` varchar(255) DEFAULT NULL,
   `doctor` varchar(255) DEFAULT NULL,
   `date` varchar(255) DEFAULT NULL,
-  `test_for` varchar(255) DEFAULT NULL
+  `report` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `diagnosis`
+--
+
+INSERT INTO `diagnosis` (`id`, `patient`, `test_done`, `chief_complaint`, `medications`, `doctor`, `date`, `report`) VALUES
+(1, 'pat01', 'blood test', 'frequent couphing', 'cough medicine', 'doc01', NULL, 'report.pdf');
 
 -- --------------------------------------------------------
 
@@ -110,7 +117,8 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`id`, `name`, `gender`, `email`, `password`, `nationality`, `doctor_id`, `user_type`, `date_birth`, `phone`, `prefix`) VALUES
-(1, 'jerry', 'male', 'vefidi135@gmail.com', '$2y$10$G9f/RUxgKipn33Z8rTQe/OEPs55mFuvhSy9pr49IJUB9xM/HW/1z.', 'Nigerian', 'doc01', 'doctor', '2003-02-10', 'vefidi135@gmail.com', 'doc');
+(1, 'jerry', 'male', 'vefidi135@gmail.com', '$2y$10$G9f/RUxgKipn33Z8rTQe/OEPs55mFuvhSy9pr49IJUB9xM/HW/1z.', 'Nigerian', 'doc01', 'doctor', '2003-02-10', 'vefidi135@gmail.com', 'doc'),
+(2, 'peter griffin', 'female', 'mosope@gmail.com', '$2y$10$5yQ29AtxkkVePHOtcmiCF.bL9j2ToiRR9N4kj8HBHI15m5h5ONKKe', 'Nigerian', 'doc02', 'doctor', '1002-01-02', 'mosope@gmail.com', 'doc');
 
 --
 -- Triggers `doctors`
@@ -152,7 +160,7 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`id`, `name`, `date_birth`, `gender`, `email`, `password`, `nationality`, `patient_id`, `medical_history`, `user_type`, `prefix`, `phone`) VALUES
-(1, 'Victor Efidi okechukwu', '2003-01-03', 'male', 'vefidi135@gmail.com', '$2y$10$1oKqWY0u.ZoivJ.6pRYcw.cKM4tdnXLJSHAAI3C92PM.pEYy5qRWe', 'Nigerian', 'pat01', 'dcdcdc', 'patient', 'pat', 'vefidi135@gmail.com');
+(1, 'Victor Efidi  okechukwu', '2003-01-03', 'male', 'vefidi135@gmail.com', '$2y$10$1oKqWY0u.ZoivJ.6pRYcw.cKM4tdnXLJSHAAI3C92PM.pEYy5qRWe', 'Nigerian', 'pat01', 'dcdcdc', 'patient', 'pat', 'vefidi135@gmail.com');
 
 --
 -- Triggers `patients`
@@ -222,13 +230,13 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `patients`

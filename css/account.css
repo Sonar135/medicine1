@@ -15,9 +15,16 @@
 }
 
 
-.p_right, .p_left{
+ .p_left{
     width:600px;
     height:100%;
+}
+
+.p_right{
+    width:500px;
+    height: 90%;
+    box-shadow: var(--shadow);
+    margin:30px auto;
 }
 
 
@@ -35,12 +42,10 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    background: var(--accent_hover);
+    box-shadow: var(--shadow);
 }
 
-.p_left{
-    border-right:1px solid rgba(0, 0, 0, 0.166);
-}
+
 
 .p_left h1{
     margin:44px 0;
@@ -64,6 +69,8 @@
 
 .p_right{
     padding:30px 30px;
+    text-align: left;
+
 }
 
 .p_right h1{
@@ -84,8 +91,8 @@
 
 
 .ail_cont{
-    width:500px;
-    height:200px;
+    width:400px;
+    height:auto;
     margin:20px auto;
     border-radius: 16px;
     padding:20px;

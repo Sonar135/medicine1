@@ -27,7 +27,11 @@ while($row=mysqli_fetch_assoc($get)){
   $date=$row["date"];
   $time=$row["time"];
   $status=$row["status"];
-  
+  $doctor_id=$row["consulting_doc"];
+
+  $get_doctor=mysqli_query($conn, "SELECT * from doctors where doctor_id='$doctor_id'");
+
+  $doc_row=mysqli_fetch_assoc($get_doctor);
 
 
   if($row["consulting_doc"]==""){
@@ -35,7 +39,9 @@ while($row=mysqli_fetch_assoc($get)){
   }
 
   else{
-    $doctor=$row["consulting_doc"];
+
+
+    $doctor=$row["name"];
 
   }
 

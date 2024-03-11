@@ -3,6 +3,63 @@
 ?>
 
 
+<?php
+$patients="";
+
+    $get=mysqli_query($conn, "SELECT * from patients");
+
+    if(mysqli_num_rows($get)<1){
+        $patients='<h1>no patients registered</h1>';
+    }
+
+   while($row=mysqli_fetch_assoc($get)){
+
+    $name=$row["name"];
+    $dob=$row["date_birth"];
+    $gender=$row["gender"];
+    $nationality=$row["nationality"];
+    $med_hist=$row["medical_history"];
+    $dobObject = new DateTime($dob);
+    $now = new DateTime();
+    $age = $now->diff($dobObject)->y;
+    $pat_id=$row["patient_id"];
+
+
+    $patients.='
+    <div class="doctor_card">
+    <div class="doctor_photo">
+
+    </div>
+
+    <div class="ne">
+        <h3>id:</h3>
+
+        <h3>'.$pat_id.'</h3>
+
+    </div>
+
+    <div class="ne">
+        <h3>name:</h3>
+
+        <h3 id="name">'.$name.'</h3>
+
+
+    </div>
+
+    <div class="ne">
+        <h3>age:</h3>
+
+        <h3> '.$age.'</h3>
+
+    </div>
+
+  <a href="account.php?pat='.$pat_id.'"> <button>See Profile</button></a> 
+</div>
+    ';
+
+
+   }
+?>
 
 
 
@@ -36,47 +93,9 @@
 
     <div class="container sec1">
         <div class="cent">
-            <div class="doctor_card">
-                <div class="doctor_photo">
-
-                </div>
-
-                <div class="ne">
-                    <h3>id:</h3>
-
-                    <h3>doc01</h3>
-
-                </div>
-
-                <div class="ne">
-                    <h3>name:</h3>
-
-                    <h3>Efidi Victor</h3>
-
-
-                </div>
-
-                <div class="ne">
-                    <h3>age:</h3>
-
-                    <h3>37</h3>
-
-                </div>
-
-                <button>See Profile</button>
-            </div>
-
-            <div class="doctor_card">
-                
-                </div>
-
-                <div class="doctor_card">
-                
-                </div>
-
-                <div class="doctor_card">
-                
-                </div>
+      
+        <?php echo $patients?>
+        
         </div>
     </div>
 

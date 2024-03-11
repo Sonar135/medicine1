@@ -12,6 +12,11 @@
      if($user_type=="patient"){
       $patientID=$_SESSION['patient_id'];
      }
+
+
+     if($user_type=="doctor"){
+      $doctorID=$_SESSION['doctor_id'];
+     }
   
   }
 ?>
@@ -37,7 +42,7 @@
   
         <div class="nav_cont">
             <div class="logo_cont">
-          <a href="main.php"> <h1>MedAppoint</h1></a>  
+         <h1>MedAppoint</h1>
             </div>
 
             <div class="menu">

@@ -40,8 +40,16 @@
     color:black;
     text-transform: capitalize;
     font-weight:500;
+  
+    
 }
 
+#name{
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide any overflow */
+    text-overflow: ellipsis;
+    width:70px;
+}
 
 
 .ne{

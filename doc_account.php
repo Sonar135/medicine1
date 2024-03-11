@@ -5,11 +5,11 @@
 
 
 <?php
-    if(isset($_GET["pat"])){
-        $patient_id=$_GET["pat"];
+    if(isset($_GET["doc"])){
+        $doc_id=$_GET["doc"];
     }
 
-    $get=mysqli_query($conn, "SELECT * from patients where patient_id='$patient_id' ");
+    $get=mysqli_query($conn, "SELECT * from doctors where doctor_id='$doc_id' ");
 
     $row=mysqli_fetch_assoc($get);
 
@@ -17,75 +17,10 @@
     $dob=$row["date_birth"];
     $ggender=$row["gender"];
     $nationality=$row["nationality"];
-    $med_hist=$row["medical_history"];
     $dobObject = new DateTime($dob);
     $now = new DateTime();
     $age = $now->diff($dobObject)->y;
 ?>
-
-
-
-
-
-
-
-<?php
-    if(isset($_POST["submit"])){
-
-      
-        $targetDir = "uploads/";
-        $targetFile = $targetDir. basename($_FILES["file"] ["name"]);
-        $fileType = strtolower (pathinfo($targetFile, PATHINFO_EXTENSION));
-        $file_name=$_FILES["file"]["name"];
-        $complaint=$_POST["complaint"];
-        $test=$_POST["test"];
-        $medications=$_POST["medications"];
-
-
-
-        if($complaint=="" or $test=="" or $medications==""){
-            echo '  <div class="message" id="message">
-          please fill all fields
-        </div>';
-        }
-
-        else{
-            if($fileType=="jpg" or  $fileType=="png" or $fileType=="jpeg"){
-                $type="image";
-            }
-    
-            if($fileType=="pptx" or $fileType=="ppt"){
-                $type="powerpoint";
-            }
-    
-            if($fileType=="docx" or $fileType=="doc"){
-                $type="word";
-            }
-    
-          
-
-            if($fileType=="pdf"){
-                $type="pdf";
-            }
-    
-          
-            move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile);
-    
-            $query=mysqli_query($conn, "INSERT into diagnosis (patient, test_done, chief_complaint, medications, doctor, report) values('$patient_id' , '$test', '$complaint',  '$medications', '$doctorID', '$file_name'  )");
-
-            if($query){
-                header("location: account.php?pat=$patient_id&uploaded");
-            }
-        }
-
-    
-
-
-    }
-?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -111,22 +46,22 @@
                 <h1>upload diagnosis</h1>
 
               <form action="" method="post" enctype="multipart/form-data"> <div class="input">
-                    <input type="text" value="" name="complaint" placeholder="Chief Complaint">
+                    <input type="text" value="" name="name" placeholder="Chief Complaint">
                     <input type="text" value="" name="test" placeholder="test done">
                 </div>
 
                 <div class="input">
-                    <input type="text" value="" name="medications" placeholder="Medications to be Taken)">
+                    <input type="text" value="" name="address" placeholder="Medications to be Taken)">
 
                 </div>
 
                 <div class="input">
                 <label for="prof" class="label">upload test result</label>
-                <input type="file"  name="file"  hidden accept="application/pdf, .doc, .docx, .ppt, .pptx"  id="prof">
+                <input type="file"  name="profile"  hidden accept="image/*"  id="prof">
             
             </div>
 
-                <button name="submit">submit</button></form> 
+                <button name="edit_stud">submit</button></form> 
             </div>
 
          
@@ -168,15 +103,9 @@
             </div>
 
             <div class="p_right">
-                <h1>Patient ID : <?php echo $patient_id?></h1>
+                <h1>Doctor ID : <?php echo $doc_id?></h1>
                 <!-- <h1>Appointment Date: 20/05/2024</h1> -->
-                    <div class="med_ail">
-                        <h1>Medical History:</h1>
-
-                        <div class="ail_cont">
-                        <?php echo $med_hist?>  
-                     </div>
-                    </div>
+               
 
                
               
@@ -189,7 +118,7 @@
   
 
             <div class="button_cont">
-                    <button id="toggle">Upload Diagnosis/document</button>
+                    <button >delete account</button>
                  
                     </div>
 
